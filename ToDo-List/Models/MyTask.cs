@@ -22,6 +22,7 @@ namespace ToDoList.Models
         public string? TaskDesc { get; set; }
 
 
+        public int PriorityId { get; set; }
         [Display(Name = "Приоритет")]
         public virtual Priority? Priority { get; set; }
 
