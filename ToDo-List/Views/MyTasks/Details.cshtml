@@ -17,7 +17,7 @@
 
                 @*Первая строка - Название задачи*@
                 <tr class="text-center fw-bold bg-warning" style="font-size:24px;">
-                    <td colspan="4">
+                    <td colspan="3">
                         @Html.DisplayFor(model=>model.TaskName)
                     </td>
                 </tr>
@@ -25,19 +25,19 @@
 
                 @*// Первая строка*@
                 <tr class=" col-2 ">
-                    <td>
+                    <td class="fw-bold bg-info">
                         @Html.DisplayNameFor(model=>model.Status)  @*Статус Название*@
                     </td>
 
 
                     <td>
-                        @Html.DisplayFor(model=>model.Status) @*Статус задачи*@
+                        @Html.DisplayFor(model=>model.Status.StatusName)  @*Статус задачи*@
                     </td>
 
 
                     @*// Третий столбец (Задача)*@
 
-                    <td rowspan="3" class="col-8">
+                    <td rowspan="4" class="col-8">
                         @*Описание задачи Название*@
                         <b>@Html.DisplayNameFor(model=>model.TaskDesc):</b> <br />
                         @Html.DisplayFor(model=>model.TaskDesc)  @*Тест задачи*@
@@ -48,7 +48,7 @@
 
                 @*// Вторая строка Приоритет*@
                 <tr class=" col-2">
-                    <td>
+                    <td class="fw-bold bg-info">
                         @Html.DisplayNameFor(model=>model.Priority) @* Приоритет Название*@
                     </td>
 
@@ -66,8 +66,8 @@
 
                 @*// Третья строка Номер задачи*@
                 <tr>
-                    <td>
-                        @Html.DisplayNameFor(model=>model.TaskId) 
+                    <td class="fw-bold bg-info">
+                        @Html.DisplayNameFor(model=>model.TaskId)
                     </td>
 
                     <td>
@@ -75,16 +75,17 @@
                     </td>
                 </tr>
 
-                @*// Четвертая строка Дата*@
+                @*// Четвертая строка Дата создания*@
                 <tr>
-                    <td>
-                        @Html.DisplayNameFor(model=>model.DateOpen)
+                    <td class="fw-bold bg-info">
+                        @Html.DisplayNameFor(model=>model.DateCreate)
                     </td>
 
                     <td>
-                        @Html.DisplayFor(model=>model.DateOpen)
+                        @Html.DisplayFor(model=>model.DateCreate)
                     </td>
                 </tr>
+            
 
 
 
