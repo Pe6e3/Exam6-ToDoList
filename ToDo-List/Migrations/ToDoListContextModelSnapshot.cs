@@ -30,9 +30,6 @@ namespace ToDo_List.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TaskId"));
 
-                    b.Property<DateTime>("DateClose")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
 
@@ -42,8 +39,8 @@ namespace ToDo_List.Migrations
                     b.Property<int>("PriorityId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
 
                     b.Property<string>("TaskDesc")
                         .HasColumnType("nvarchar(max)");
@@ -54,6 +51,8 @@ namespace ToDo_List.Migrations
                     b.HasKey("TaskId");
 
                     b.HasIndex("PriorityId");
+
+                    b.HasIndex("StatusId");
 
                     b.ToTable("Tasks");
                 });
@@ -74,6 +73,22 @@ namespace ToDo_List.Migrations
                     b.ToTable("Priorities");
                 });
 
+            modelBuilder.Entity("ToDoList.Models.Status", b =>
+                {
+                    b.Property<int>("StatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusId"));
+
+                    b.Property<string>("StatusName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StatusId");
+
+                    b.ToTable("Status");
+                });
+
             modelBuilder.Entity("ToDoList.Models.MyTask", b =>
                 {
                     b.HasOne("ToDoList.Models.Priority", "Priority")
@@ -82,7 +97,20 @@ namespace ToDo_List.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ToDoList.Models.Status", "Status")
+                        .WithMany("Tasks")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Priority");
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("ToDoList.Models.Status", b =>
+                {
+                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }

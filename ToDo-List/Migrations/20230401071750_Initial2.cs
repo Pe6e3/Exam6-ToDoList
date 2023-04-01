@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ToDo_List.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Initial2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,6 +25,19 @@ namespace ToDo_List.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Status",
+                columns: table => new
+                {
+                    StatusId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StatusName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Status", x => x.StatusId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tasks",
                 columns: table => new
                 {
@@ -32,11 +45,10 @@ namespace ToDo_List.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TaskName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TaskDesc = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PriorityId = table.Column<int>(type: "int", nullable: true),
-                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PriorityId = table.Column<int>(type: "int", nullable: false),
+                    StatusId = table.Column<int>(type: "int", nullable: false),
                     DateCreate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateOpen = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateClose = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DateOpen = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,13 +57,25 @@ namespace ToDo_List.Migrations
                         name: "FK_Tasks_Priorities_PriorityId",
                         column: x => x.PriorityId,
                         principalTable: "Priorities",
-                        principalColumn: "PriorityId");
+                        principalColumn: "PriorityId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Tasks_Status_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "Status",
+                        principalColumn: "StatusId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tasks_PriorityId",
                 table: "Tasks",
                 column: "PriorityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tasks_StatusId",
+                table: "Tasks",
+                column: "StatusId");
         }
 
         /// <inheritdoc />
@@ -62,6 +86,9 @@ namespace ToDo_List.Migrations
 
             migrationBuilder.DropTable(
                 name: "Priorities");
+
+            migrationBuilder.DropTable(
+                name: "Status");
         }
     }
 }

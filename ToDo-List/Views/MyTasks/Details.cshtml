@@ -1,0 +1,99 @@
+﻿@model MyTask
+
+@{
+    ViewData["Title"] = "Подробно о задаче";
+}
+
+<h2>Подробно о задаче</h2>
+<hr />
+<div class=" row">
+
+    <div class="col-md-12">
+        <input type="hidden" name="TaskId" value="@Model.TaskId" />
+        <form asp-action="Details">
+
+
+            <table class="table table-bordered w-100">
+
+                @*Первая строка - Название задачи*@
+                <tr class="text-center fw-bold bg-warning" style="font-size:24px;">
+                    <td colspan="4">
+                        @Html.DisplayFor(model=>model.TaskName)
+                    </td>
+                </tr>
+
+
+                @*// Первая строка*@
+                <tr class=" col-2 ">
+                    <td>
+                        @Html.DisplayNameFor(model=>model.Status)  @*Статус Название*@
+                    </td>
+
+
+                    <td>
+                        @Html.DisplayFor(model=>model.Status) @*Статус задачи*@
+                    </td>
+
+
+                    @*// Третий столбец (Задача)*@
+
+                    <td rowspan="3" class="col-8">
+                        @*Описание задачи Название*@
+                        <b>@Html.DisplayNameFor(model=>model.TaskDesc):</b> <br />
+                        @Html.DisplayFor(model=>model.TaskDesc)  @*Тест задачи*@
+
+                    </td>
+                </tr>
+
+
+                @*// Вторая строка Приоритет*@
+                <tr class=" col-2">
+                    <td>
+                        @Html.DisplayNameFor(model=>model.Priority) @* Приоритет Название*@
+                    </td>
+
+                    <td>
+                        @foreach (Priority priority in ViewBag.Priorities)
+                        {
+                            if (priority.PriorityId == Model.PriorityId)
+                            {
+                                @priority.PriorityName
+                            }
+                        }
+                    </td>
+
+                </tr>
+
+                @*// Третья строка Номер задачи*@
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model=>model.TaskId) 
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model=>model.TaskId)
+                    </td>
+                </tr>
+
+                @*// Четвертая строка Дата*@
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model=>model.DateOpen)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model=>model.DateOpen)
+                    </td>
+                </tr>
+
+
+
+
+            </table>
+
+
+        </form>
+
+    </div>
+
+</div>

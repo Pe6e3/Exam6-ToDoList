@@ -12,8 +12,8 @@ using ToDoList.Data;
 namespace ToDo_List.Migrations
 {
     [DbContext(typeof(ToDoListContext))]
-    [Migration("20230401044639_Initial fixed syntax error")]
-    partial class Initialfixedsyntaxerror
+    [Migration("20230401071750_Initial2")]
+    partial class Initial2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,20 +33,17 @@ namespace ToDo_List.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TaskId"));
 
-                    b.Property<DateTime>("DateClose")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateOpen")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("PriorityId")
+                    b.Property<int>("PriorityId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
 
                     b.Property<string>("TaskDesc")
                         .HasColumnType("nvarchar(max)");
@@ -57,6 +54,8 @@ namespace ToDo_List.Migrations
                     b.HasKey("TaskId");
 
                     b.HasIndex("PriorityId");
+
+                    b.HasIndex("StatusId");
 
                     b.ToTable("Tasks");
                 });
@@ -77,13 +76,44 @@ namespace ToDo_List.Migrations
                     b.ToTable("Priorities");
                 });
 
+            modelBuilder.Entity("ToDoList.Models.Status", b =>
+                {
+                    b.Property<int>("StatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusId"));
+
+                    b.Property<string>("StatusName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("StatusId");
+
+                    b.ToTable("Status");
+                });
+
             modelBuilder.Entity("ToDoList.Models.MyTask", b =>
                 {
                     b.HasOne("ToDoList.Models.Priority", "Priority")
                         .WithMany()
-                        .HasForeignKey("PriorityId");
+                        .HasForeignKey("PriorityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ToDoList.Models.Status", "Status")
+                        .WithMany("Tasks")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Priority");
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("ToDoList.Models.Status", b =>
+                {
+                    b.Navigation("Tasks");
                 });
 #pragma warning restore 612, 618
         }
