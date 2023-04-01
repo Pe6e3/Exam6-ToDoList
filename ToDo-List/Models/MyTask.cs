@@ -2,9 +2,9 @@
 
 namespace ToDoList.Models
 {
-    public class Task
+    public class MyTask
     {
-        public Task()
+        public MyTask()
         {
             // При создании задачи сразу записываем текущее время - время создания задачи
             DateCreate = DateTime.Now; 
