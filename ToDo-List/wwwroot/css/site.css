@@ -19,4 +19,13 @@ html {
 
 body {
   margin-bottom: 60px;
+  background-color:antiquewhite
+}
+
+.navbar {
+    background-color: #8a8985;
+}
+.nav-link{
+    font-size:28px;
+    color: antiquewhite;
 }

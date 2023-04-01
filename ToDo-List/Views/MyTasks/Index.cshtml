@@ -8,14 +8,84 @@
 <hr />
 <p> <a asp-action="Create" class="btn btn-success">Создать новую</a> </p>
 
-<ul class="list-group">
+<table class="table-bordered col-md-12">
+    @*Заголовки столбцов*@
+    <tr class="text-center fw-bold bg-warning" style="font-size:24px;">
+
+
+        <td>
+            Номер
+        </td>
+
+        <td>
+            Название задачи
+        </td>
+
+        <td>
+            Приоритет
+        </td>
+
+        <td>
+            Статус
+        </td>
+
+        <td>
+            Действия
+        </td>
+
+    </tr>
+
+    @*Строки столбцов*@
     @foreach (var task in Model)
     {
-        <li class="list-group-item">
-            <a asp-action="Details" asp-route-id="@task.TaskId">@task.TaskName</a>
-        </li>
+        <tr class="text-center" style="height:55px;background-color: blanchedalmond;">
+            @*Номер*@
+            <td>
+                @task.TaskId
+            </td>
 
+            @*Название задачи*@
+            <td>
+                @task.TaskName
+            </td>
+
+            @*Приоритет*@
+            <td>
+                @task.Priority.PriorityName
+            </td>
+
+            @*Статус*@
+            <td>
+                @task.Status.StatusName
+            </td>
+
+            @*Действия*@
+            <td>
+                @if (task.Status.StatusName == "Новая")
+                {
+                    <a href="#" class=" btn btn-primary">Открыть</a>
+                    <a asp-action="Details" asp-route-id="@task.TaskId" class=" btn btn-dark">Детали</a>
+                    <a asp-action="Details" asp-route-id="@task.TaskId" class=" btn btn-danger">Удалить</a>
+                }
+                @if (task.Status.StatusName == "Открыта")
+                {
+                    <a href="#" class=" btn btn-danger">Закрыть</a>
+                    <a asp-action="Details" asp-route-id="@task.TaskId" class=" btn btn-danger">Детали</a>
+                }
+                @if (task.Status.StatusName == "Закрыта")
+                {
+                    <a asp-action="Details" asp-route-id="@task.TaskId"  class=" btn btn-danger">Удалить</a>
+                    <a asp-action="Details" asp-route-id="@task.TaskId" class=" btn btn-danger">Детали</a>
+                }
+
+            </td>
+
+
+        </tr>
     }
 
 
-</ul>
+
+</table>
+
+
