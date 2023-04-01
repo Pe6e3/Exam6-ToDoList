@@ -13,6 +13,8 @@ namespace ToDo_List.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.Priorities = _db.Priorities.ToList();
+            ViewBag.Status = _db.Status.ToList();
             IEnumerable<MyTask> myTasks = _db.Tasks.ToList();
             return View(myTasks);
         }
@@ -20,6 +22,8 @@ namespace ToDo_List.Controllers
         public IActionResult Create()
         {
             ViewBag.Priorities = _db.Priorities.ToList();
+            ViewBag.Status = _db.Status.ToList();
+
             return View();
         }
 
@@ -34,6 +38,8 @@ namespace ToDo_List.Controllers
         public IActionResult Details(int id)
         {
             ViewBag.Priorities = _db.Priorities.ToList();
+            ViewBag.Status = _db.Status.ToList();
+
             MyTask myTask = _db.Tasks.Find(id);
             if (myTask == null)
             {

@@ -10,4 +10,6 @@ public class ToDoListContext : DbContext
 
     public DbSet<MyTask> Tasks { get; set; }
     public DbSet<Priority> Priorities { get; set; }
+    public DbSet<Status> Status { get; set; }
+
 }

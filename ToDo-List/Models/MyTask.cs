@@ -14,6 +14,7 @@ namespace ToDoList.Models
 
 
         [Display(Name = "Описание задачи")]
+        [DataType(DataType.MultilineText)]
         public string? TaskDesc { get; set; }
 
 
@@ -29,7 +30,7 @@ namespace ToDoList.Models
 
 
         [Display(Name = "Дата создания задачи")]
-        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy HH:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateCreate { get; set; }
 
