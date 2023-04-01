@@ -50,9 +50,27 @@
             </td>
 
             @*Приоритет*@
-            <td>
-                @task.Priority.PriorityName
-            </td>
+            @if (task.Priority.PriorityName == "Высокий")
+            {
+                <td style="color:red">
+
+                    @task.Priority.PriorityName
+                </td>
+            }
+            @if (task.Priority.PriorityName == "Низкий")
+            {
+                <td style="color:blue">
+
+                    @task.Priority.PriorityName
+                </td>
+            }
+            @if (task.Priority.PriorityName != "Высокий" && task.Priority.PriorityName != "Низкий")
+            {
+                <td style="color:black">
+
+                    @task.Priority.PriorityName
+                </td>
+            }
 
             @*Статус*@
             <td>
@@ -74,7 +92,7 @@
                 }
                 @if (task.Status.StatusName == "Закрыта")
                 {
-                    <a asp-action="Delete" asp-route-id="@task.TaskId"  class=" btn btn-danger">Удалить</a>
+                    <a asp-action="Delete" asp-route-id="@task.TaskId" class=" btn btn-danger">Удалить</a>
                     <a asp-action="Details" asp-route-id="@task.TaskId" class=" btn btn-primary">Детали</a>
                 }
 

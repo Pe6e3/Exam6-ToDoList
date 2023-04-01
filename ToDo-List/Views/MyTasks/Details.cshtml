@@ -57,7 +57,14 @@
                         {
                             if (priority.PriorityId == Model.PriorityId)
                             {
-                                @priority.PriorityName
+                                if (@priority.PriorityName == "Высокий")
+                                {
+                                    <b style="color:red"> @priority.PriorityName</b>
+                                }
+                                else
+                                {
+                                    @priority.PriorityName
+                                }
                             }
                         }
                     </td>

@@ -53,7 +53,7 @@ namespace ToDo_List.Controllers
         public IActionResult Delete(int id)
         {
             MyTask myTask = _db.Tasks.Find(id);
-            if (myTask == null)
+            if (myTask == null || myTask.StatusId == 2)
             {
                 return NotFound();
             }
