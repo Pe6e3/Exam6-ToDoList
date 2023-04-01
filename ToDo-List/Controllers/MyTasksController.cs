@@ -73,5 +73,21 @@ namespace ToDo_List.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult ChangeStatus(int id)
+        {
+            MyTask myTask = _db.Tasks.Find(id);
+            if (myTask.StatusId == 1)
+                myTask.DateOpen = DateTime.Now;
+
+            myTask.StatusId++;
+
+
+
+            _db.Update(myTask);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

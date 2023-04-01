@@ -63,13 +63,13 @@
             <td>
                 @if (task.Status.StatusName == "Новая")
                 {
-                    <a href="#" class=" btn btn-primary">Открыть</a>
+                    <a asp-action="ChangeStatus" asp-route-id="@task.TaskId" class=" btn btn-primary">Открыть</a>
                     <a asp-action="Details" asp-route-id="@task.TaskId" class=" btn btn-dark">Детали</a>
                     <a asp-action="Delete" asp-route-id="@task.TaskId" class=" btn btn-danger">Удалить</a>
                 }
                 @if (task.Status.StatusName == "Открыта")
                 {
-                    <a href="#" class=" btn btn-danger">Закрыть</a>
+                    <a asp-action="ChangeStatus"     class=" btn btn-danger">Закрыть</a>
                     <a asp-action="Details" asp-route-id="@task.TaskId" class=" btn btn-danger">Детали</a>
                 }
                 @if (task.Status.StatusName == "Закрыта")
