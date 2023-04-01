@@ -4,13 +4,8 @@ namespace ToDoList.Models
 {
     public class MyTask
     {
-        public MyTask()
-        {
-            // При создании задачи сразу записываем текущее время - время создания задачи
-            DateCreate = DateTime.Now; 
-        }
 
-
+        [Display(Name = "Номер задачи")]
         [Key] public int TaskId { get; set; }
 
         [Display(Name = "Имя задачи")]
@@ -27,8 +22,9 @@ namespace ToDoList.Models
         public virtual Priority? Priority { get; set; }
 
 
+        public int StatusId { get; set; }
         [Display(Name = "Статус")]
-        public string? Status { get; set; }
+        public Status? Status { get; set; }
 
 
 
@@ -41,11 +37,6 @@ namespace ToDoList.Models
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateOpen { get; set; }
-
-        [Display(Name = "Дата закрытия задачи")]
-        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
-        [DataType(DataType.Date)]
-        public DateTime DateClose { get; set; }
 
         
     }

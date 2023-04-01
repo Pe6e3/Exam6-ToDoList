@@ -8,5 +8,6 @@ namespace ToDoList.Models
 
         [Display(Name = "Статус задачи")]
         public string? StatusName { get; set; }
+        public List<MyTask> Tasks { get; set; }
     }
 }
