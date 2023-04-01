@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ToDoListContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ИмяПроектаContext")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ToDoListContext")));
 
 
 
