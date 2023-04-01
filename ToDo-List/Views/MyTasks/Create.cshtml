@@ -33,7 +33,7 @@
 
             <div class="form-group mb-3">
                 <label asp-for="TaskDesc" class="form-label"></label>
-                <input asp-for="TaskDesc" class="form-control" />
+                <textarea asp-for="TaskDesc" class="form-control" style="height: 15rem; overflow-y: scroll"></textarea>
                 <span asp-validation-for="TaskDesc" class="form-text text-danger"></span>
             </div>
 
@@ -41,6 +41,9 @@
                 <input type="submit" value="Добавить задачу" class="btn btn-primary" />
                 <a asp-action="Index" class="btn btn-danger">Отмена</a>
             </div>
+
+            <input type="hidden" asp-for="StatusId" value="1" />
+            <input type="hidden" asp-for="DateCreate" value="@DateTime.Now" />
 
 
 
