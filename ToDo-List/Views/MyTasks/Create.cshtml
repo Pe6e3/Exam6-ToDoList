@@ -4,51 +4,66 @@
     ViewData["Title"] = "Новая задача";
 }
 
-<h2> Новая задача</h2>
-<hr />
-<div class=" row">
+<div class="create-field">
 
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <h2 class="text-center"> Новая задача</h2>
+    <hr />
+    <div class=" row">
 
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div>
+            <form asp-action="Create">
 
-            <div class="form-group mb-3">
-                <label asp-for="TaskName" class="form-label"></label>
-                <input asp-for="TaskName" class="form-control" />
-                <span asp-validation-for="TaskName" class="form-text text-danger"></span>
-            </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group mb-3">
-                <label asp-for="PriorityId" class="form-label"></label>
-                <select asp-for="PriorityId" class="form-control">
-                    @foreach (Priority priority in ViewBag.Priorities)
-                    {
-                        <option value=@priority.PriorityId>@priority.PriorityName</option>
-                    }
-                </select>
-                <span asp-validation-for="TaskDesc" class="form-text text-danger"></span>
-            </div>
+                <div class="form-group mb-3">
+                    <label asp-for="TaskName" class="form-label"></label>
+                    <input asp-for="TaskName" class="form-control" />
+                    <span asp-validation-for="TaskName" class="form-text text-danger"></span>
+                </div>
 
-
-            <div class="form-group mb-3">
-                <label asp-for="TaskDesc" class="form-label"></label>
-                <textarea asp-for="TaskDesc" class="form-control" style="height: 15rem; overflow-y: scroll"></textarea>
-                <span asp-validation-for="TaskDesc" class="form-text text-danger"></span>
-            </div>
-
-            <div class="form-group">
-                <input type="submit" value="Добавить задачу" class="btn btn-primary" />
-                <a asp-action="Index" class="btn btn-danger">Отмена</a>
-            </div>
-
-            <input type="hidden" asp-for="StatusId" value="1" />
-            <input type="hidden" asp-for="DateCreate" value="@DateTime.Now" />
+                <div class="form-group mb-3 col-md-4">
+                    <label asp-for="PriorityId" class="form-label"></label>
+                    <select asp-for="PriorityId" class="form-control">
+                        @foreach (Priority priority in ViewBag.Priorities)
+                        {
+                            <option value=@priority.PriorityId>@priority.PriorityName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="TaskDesc" class="form-text text-danger"></span>
+                </div>
 
 
+                <div class="form-group mb-3">
+                    <label asp-for="TaskDesc" class="form-label"></label>
+                    <textarea asp-for="TaskDesc" class="form-control" style="height: 15rem; overflow-y: scroll"></textarea>
+                    <span asp-validation-for="TaskDesc" class="form-text text-danger"></span>
+                </div>
 
-        </form>
+                <div class="form-group text-center">
+                    <input type="submit" value="Добавить задачу" class="btn btn-primary" />
+                    <a asp-action="Index" class="btn btn-danger">Отмена</a>
+                </div>
+
+                <input type="hidden" asp-for="StatusId" value="1" />
+                <input type="hidden" asp-for="DateCreate" value="@DateTime.Now" />
+
+
+
+            </form>
+
+        </div>
 
     </div>
-
 </div>
+
+<style>
+
+    .create-field {
+        margin-top:50px;
+        font-family: 'Neucha', cursive;
+        padding:20px;
+        font-size:20px;
+        font-weight:bold;
+        border: 4mm ridge rgba(211, 220, 50, .6);
+    }
+</style>

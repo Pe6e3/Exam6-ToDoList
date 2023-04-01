@@ -1,5 +1,6 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+
 }
 
 @media (min-width: 768px) {
@@ -13,19 +14,29 @@ html {
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
   margin-bottom: 60px;
   background-color:antiquewhite
+
+
 }
 
 .navbar {
     background-color: #8a8985;
+    font-size:36px;
+    font-family: 'Rubik', sans-serif;
+
 }
 .nav-link{
-    font-size:28px;
     color: antiquewhite;
+    margin-right:20px;
+}
+
+tbody {
+    font-family: 'Neucha', cursive;
+    
 }

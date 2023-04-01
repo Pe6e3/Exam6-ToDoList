@@ -52,21 +52,21 @@
             @*Приоритет*@
             @if (task.Priority.PriorityName == "Высокий")
             {
-                <td style="color:red">
+                <td style="color:orange">
 
-                    @task.Priority.PriorityName
+                    <b> @task.Priority.PriorityName </b>
                 </td>
             }
             @if (task.Priority.PriorityName == "Низкий")
             {
-                <td style="color:blue">
+                <td style="color:green">
 
                     @task.Priority.PriorityName
                 </td>
             }
             @if (task.Priority.PriorityName != "Высокий" && task.Priority.PriorityName != "Низкий")
             {
-                <td style="color:black">
+                <td style="color:blue">
 
                     @task.Priority.PriorityName
                 </td>
