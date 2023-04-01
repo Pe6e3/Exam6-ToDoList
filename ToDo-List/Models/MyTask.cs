@@ -16,12 +16,14 @@ namespace ToDoList.Models
         [Display(Name = "Имя задачи")]
         [DataType(DataType.MultilineText)]
         public string? TaskName { get; set; }
-        [Display(Name = "Описание задачи")]
 
+
+        [Display(Name = "Описание задачи")]
         public string? TaskDesc { get; set; }
 
+
         [Display(Name = "Приоритет")]
-        public Priority? Priority { get; set; }
+        public virtual Priority? Priority { get; set; }
 
 
         [Display(Name = "Статус")]
