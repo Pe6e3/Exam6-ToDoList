@@ -65,7 +65,7 @@
                 {
                     <a href="#" class=" btn btn-primary">Открыть</a>
                     <a asp-action="Details" asp-route-id="@task.TaskId" class=" btn btn-dark">Детали</a>
-                    <a asp-action="Details" asp-route-id="@task.TaskId" class=" btn btn-danger">Удалить</a>
+                    <a asp-action="Delete" asp-route-id="@task.TaskId" class=" btn btn-danger">Удалить</a>
                 }
                 @if (task.Status.StatusName == "Открыта")
                 {
@@ -74,7 +74,7 @@
                 }
                 @if (task.Status.StatusName == "Закрыта")
                 {
-                    <a asp-action="Details" asp-route-id="@task.TaskId"  class=" btn btn-danger">Удалить</a>
+                    <a asp-action="Delete" asp-route-id="@task.TaskId"  class=" btn btn-danger">Удалить</a>
                     <a asp-action="Details" asp-route-id="@task.TaskId" class=" btn btn-danger">Детали</a>
                 }
 

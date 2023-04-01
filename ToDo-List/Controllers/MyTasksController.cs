@@ -48,6 +48,30 @@ namespace ToDo_List.Controllers
             return View(myTask);
         }
 
-      
+
+
+        public IActionResult Delete(int id)
+        {
+            MyTask myTask = _db.Tasks.Find(id);
+            if (myTask == null)
+            {
+                return NotFound();
+            }
+            return View(myTask);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            MyTask myTask = _db.Tasks.Find(id);
+            if (myTask == null)
+            {
+                return NotFound();
+            }
+            _db.Tasks.Remove(myTask);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
     }
 }
