@@ -29,13 +29,13 @@ namespace ToDoList.Models
 
 
 
-        [Display(Name = "Дата создания задачи")]
+        [Display(Name = "Дата и время создания задачи")]
         [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy HH:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateCreate { get; set; }
 
-        [Display(Name = "Дата открытия задачи")]
-        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Дата и время открытия задачи")]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy HH:mm}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         public DateTime DateOpen { get; set; }
 

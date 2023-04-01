@@ -85,12 +85,31 @@
                         @Html.DisplayFor(model=>model.DateCreate)
                     </td>
                 </tr>
-            </table>
+
+                @*// Четвертая строка Дата открытия*@
+                <tr>
+                    <td class="fw-bold bg-info">
+                        @Html.DisplayNameFor(model=>model.DateOpen)
+                    </td>
+
+                    <td>
+                        @{
+                            DateTime firstDay = new DateTime();
+                            if (Model.DateOpen > firstDay)
+                                @Html.DisplayFor(model => model.DateOpen);
+
+                        }
+                        </td>
+                    </tr>
 
 
-        </form>
+
+                </table>
+
+
+            </form>
             <a class="btn btn-success" asp-action="Index">Назад</a>
 
-    </div>
+        </div>
 
-</div>
+    </div>
